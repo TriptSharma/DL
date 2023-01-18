@@ -24,13 +24,13 @@ def problem_1e (A, b):
 
 def problem_1f (A, i):
     # return the sum of all the entries in the ith row whose column index is even
-    mask = [A[i,j]%2 for j in range(A[i].shape[0])]
+    mask = [A[i,j]%2==0 for j in range(A[i].shape[0])]
     return np.sum(A[i,:], where=mask)
 
 def problem_1g (A, c, d):
     # given matrix A and scalars c, d, 
     # compute the arithmetic mean over all entries of A that are between c and d (inclusive)
-    mask = np.where(A>=c and A<=d, A, 0)
+    mask = np.where(((A>=1) & (A<=3)),A,0)
     mean = np.mean(mask[np.nonzero(mask)])  #get the non zero values from the mask and compute there mean
     return mean
 
@@ -49,13 +49,12 @@ def problem_1i (x, k, m, s):
     sigma = np.eye(n) * s
     # get n*k random values from the gauss distrin
     # reshape to (n,k)
-    result = np.random.multivariate_normal(mu, sigma, (n,k))
+    result = np.random.multivariate_normal(mu, sigma, k).T
     return result
 
 def problem_1j (A):
     #return a matrix that results from randomly permuting the columns
-    cols = A.shape[1]
-    permutation = np.random.randint(0,cols,cols)
+    permutation = np.random.permutation(A.shape[1])
     return A[:, permutation]
 
 def problem_1k (x):
@@ -64,6 +63,8 @@ def problem_1k (x):
 
 def problem_1l (x, k):
     # return a n × k matrix consisting of k copies of x
+    # add the new axis so that we can repeat along axis=1
+    x = x[:,np.newaxis]
     return np.repeat(x, k, axis=1)
 
 def problem_1m (X, Y):
@@ -79,7 +80,7 @@ def problem_1n (matrices):
     for i in range(1,len(sizes)):
         count += curr_size[0]*curr_size[1]*sizes[i][1]
         curr_size = [curr_size[0],sizes[i][1]]
-    return curr_size
+    return count
 
 def linear_regression (X_tr, y_tr):
     # add 1 to X_tr
@@ -114,15 +115,15 @@ def train_age_regressor ():
     print("MSE Loss on training set: ", loss_tr )
     print("MSE Loss on test set: ", loss_te)
 
-A = np.array([[1,2,3],[2,3,4],[4,5,6]])
-B = np.array([[1,2,3],[2,3,4],[4,5,6]])
-C = np.array([[1,2,3],[2,3,4],[4,5,6]])
 
 train_age_regressor()
 
 
 
-print(problem_1b)
-print(A)
-print(B)
-print(C)
+# A = np.array([[1,2,3],[2,3,4],[4,5,6]])
+# B = np.array([[1,2,3],[2,3,4],[4,5,6]])
+# C = np.array([[1,2,3],[2,3,4],[4,5,6]])
+# print(problem_1b)
+# print(A)
+# print(B)
+# print(C)
