@@ -24,7 +24,7 @@ def problem_1e (A, b):
 
 def problem_1f (A, i):
     # return the sum of all the entries in the ith row whose column index is even
-    mask = [A[i,j]%2==0 for j in range(A[i].shape[0])]
+    mask = [A[i,j]%2==0 for j in range(A[i].sha pe[0])]
     return np.sum(A[i,:], where=mask)
 
 def problem_1g (A, c, d):
@@ -37,7 +37,7 @@ def problem_1g (A, c, d):
 def problem_1h (A, k):
     ## TODO: check which are top K eigenvecs
     # return top k right-eigenvectors of A 
-    w, X = np.linalg.eig(A) #w = eigenval, X = eiegnvec
+    w, X = np.linalg.eig(A   ) #w = eigenval, X = eiegnvec
     return X[:,:k]
 
 def problem_1i (x, k, m, s):
